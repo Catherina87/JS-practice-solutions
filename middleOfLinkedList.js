@@ -20,36 +20,15 @@ class LinkedList {
   }
 
   middleOfLinkedList() {
-    let current = this.head;
-    console.log('current = ', current.data);
-    let length = 0;
-    let middle;
+    let slow = this.head;
+    let fast = this.head;
 
-    while (current !== null) {
-      length += 1;
-
-      current = current.next;
+    while (fast !== null && fast.next !== null) {
+      slow = slow.next;
+      fast = fast.next.next;
     }
 
-    console.log('Length = ', length);
-
-    if (length % 2 !== 0) {
-      middle = Math.floor(length / 2) + (length % 2);
-      console.log('Middle = ', middle);
-    } else {
-      middle = length / 2 + 1;
-      console.log('Middle = ', middle);
-    }
-
-    let anotherCurrent = this.head;
-    let counter = 1;
-    while (anotherCurrent != null) {
-      if (counter === middle) {
-        return anotherCurrent;
-      }
-      counter += 1;
-      anotherCurrent = anotherCurrent.next;
-    }
+    return slow;
   }
 }
 
@@ -65,3 +44,4 @@ console.log(my_list.head.data);
 console.log(my_list);
 console.log(my_list.middleOfLinkedList());
 let middleNode = my_list.middleOfLinkedList();
+console.log(middleNode.data);
